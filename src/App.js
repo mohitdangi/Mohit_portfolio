@@ -4,6 +4,9 @@ import Banner from './pages/Banner';
 import ProblemSolving from './components/ProblemSolving';
 import Skills from './components/Skills';
 import MyWork from './components/MyWorks';
+import Footer from './components/Footer';
+import Challenges from './pages/Challenges';
+import AllWorks from './pages/AllWorks';
 
 
 function App() {
@@ -17,10 +20,12 @@ function App() {
               <Banner />
               <ProblemSolving /> 
               <Skills/>
-              <MyWork/> {/* Now it will be shown! */}
+              <MyWork/>
+              {/* Now it will be shown! */}
             </>
           } />
-      
+       <Route path="challenges" element={<Challenges />} />
+       <Route path="allworks" element={<AllWorks />} />
       </Route>
     </Routes>
   )

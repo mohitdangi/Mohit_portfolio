@@ -1,6 +1,8 @@
-import { Grid, Typography } from "@mui/material";
+import { Grid, Typography , Button } from "@mui/material";
 import ProjectCard from "./ProjectCard";
  import dooansh  from "../assets/doansh png-Photoroom.png";
+ import spires from "../assets/spires.png";
+ import insurance from "../assets/Insurance.png";
 
 const projects = [
   {
@@ -12,13 +14,13 @@ const projects = [
   {
     title: "Spires recruiter",
     description: "A full stack job portal application worked for Act t connect's own product ",
-    image: "/assets/chatapp.png",
+    image: spires,
     link: "https://github.com/yourusername/chatapp",
   },
   {
     title: "Insurance Domain",
     description: "A fullstack application have where user can buy ,compare policy and have real time chat room for query",
-    image: "/assets/taskmanager.png",
+    image: insurance,
     link: "https://github.com/yourusername/taskmanager",
   },
   
@@ -26,7 +28,7 @@ const projects = [
 
 const MyWork = () => {
   return (
-    <div style={{ backgroundColor: "#111111", padding: "40px 0", textAlign: "center" }}>
+    <div style={{ backgroundColor: "#111111", padding: "40px 20px", textAlign: "center" }}>
       <Typography variant="h4" gutterBottom style={{ color: "#39FF14" }}>
         My Work
       </Typography>
@@ -37,6 +39,19 @@ const MyWork = () => {
           </Grid>
         ))}
       </Grid>
+      <Button
+          href="https://github.com/yourusername"
+          target="_blank"
+          variant="outlined"
+          style={{
+            marginTop: "20px",
+            color: "#39FF14",
+            borderColor: "#39FF14",
+            textTransform: "none",
+          }}
+        >
+          View All Works
+        </Button>
     </div>
   );
 };

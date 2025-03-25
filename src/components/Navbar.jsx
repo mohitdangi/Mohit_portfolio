@@ -37,14 +37,14 @@ const Navbar = () => {
 
         {/* Desktop Navigation Links */}
         <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 3 }}>
-          <Button color="inherit" component={Link} to="/category/traditional">
-            Traditional
+          <Button color="inherit" component={Link} to="/challenges">
+            Daily Challenges 
           </Button>
           <Button color="inherit" component={Link} to="/category/western">
-            Western
+            Resume
           </Button>
           <Button color="inherit" component={Link} to="/cart">
-            Cart
+            Works
           </Button>
         </Box>
 

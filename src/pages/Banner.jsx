@@ -42,7 +42,7 @@ const BannerSection = () => {
                 fontWeight: "bold",
               }}
             >
-              👋 Hi There! I'm Onyedika
+              👋 Hi There! I'm Mohit
             </Typography>
 
             <Typography
