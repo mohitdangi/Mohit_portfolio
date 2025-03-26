@@ -9,20 +9,17 @@ const Footer = () => {
     <Box
       component="footer"
       sx={{
-        backgroundColor: theme.palette.background.default, // Dark theme background
+        backgroundColor: theme.palette.background.default,
         textAlign: "center",
-        padding: "20px 0",
-        position: "relative",
-        bottom: 0,
+        padding: "30px 10px",
         width: "100%",
-        boxShadow: `0px -2px 10px ${theme.palette.primary.main}`, // Neon Glow from theme
+        boxShadow: `0px -2px 10px ${theme.palette.primary.main}`,
       }}
     >
       {/* Footer Title */}
       <Typography
         variant="h6"
         sx={{
-          fontFamily: theme.typography.fontFamily,
           fontWeight: "bold",
           textTransform: "uppercase",
           letterSpacing: "3px",
@@ -33,7 +30,7 @@ const Footer = () => {
       </Typography>
 
       {/* Social Icons */}
-      <Box mt={1} mb={1} display="flex" justifyContent="center">
+      <Box mt={2} mb={2} display="flex" justifyContent="center" gap={2}>
         {[
           { icon: <FaGithub />, link: "https://github.com/yourusername" },
           { icon: <FaLinkedin />, link: "https://linkedin.com/in/yourusername" },
@@ -46,10 +43,12 @@ const Footer = () => {
             target="_blank"
             sx={{
               color: theme.palette.primary.main,
+              fontSize: "24px",
               transition: "0.3s",
               "&:hover": {
-                transform: "scale(1.2) rotate(5deg)",
+                transform: "scale(1.3)",
                 color: theme.palette.secondary.main,
+                textShadow: `0 0 15px ${theme.palette.secondary.main}`,
               },
             }}
           >
@@ -63,6 +62,7 @@ const Footer = () => {
         variant="body2"
         sx={{
           color: theme.palette.primary.main,
+          fontWeight: "bold",
           textShadow: `0px 0px 5px ${theme.palette.primary.main}`,
           animation: "neonGlow 1.5s infinite alternate",
           "@keyframes neonGlow": {

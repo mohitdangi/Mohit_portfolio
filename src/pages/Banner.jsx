@@ -14,6 +14,8 @@ const BannerSection = () => {
         minHeight: "100vh",
         display: "flex",
         alignItems: "center",
+        justifyContent: "center",
+        padding: 4,
       }}
     >
       <Container maxWidth="lg">
@@ -27,68 +29,64 @@ const BannerSection = () => {
             alignItems: "center",
             justifyContent: "space-between",
             flexDirection: { xs: "column", md: "row" },
+            boxShadow: `0 0 15px ${theme.palette.primary.main}`, // Neon Glow Effect
           }}
         >
           {/* Left Side - Text */}
           <Box sx={{ flex: 1, textAlign: { xs: "center", md: "left" } }}>
-            <Typography
-              variant="h6"
-              sx={{
-                backgroundColor: theme.palette.primary.main,
-                display: "inline-block",
-                padding: "8px 16px",
-                borderRadius: 2,
-                color: "#111",
-                fontWeight: "bold",
-              }}
-            >
-              👋 Hi There! I'm Mohit
-            </Typography>
+  {/* Greeting */}
+  <Typography
+    variant="h6"
+    sx={{
+      backgroundColor: theme.palette.primary.main,
+      display: "inline-block",
+      padding: "8px 16px",
+      borderRadius: 2,
+      color: "#111",
+      fontWeight: "bold",
+      textShadow: `0 0 10px ${theme.palette.primary.main}`,
+    }}
+  >
+    👋 Hi There! I'm Mohit
+  </Typography>
 
-            <Typography
-              variant="h3"
-              fontWeight="bold"
-              sx={{
-                mt: 2,
-                fontSize: { xs: "2rem", md: "3rem" },
-                color: theme.palette.primary.main,
-              }}
-            >
-              A Frontend Engineer
-            </Typography>
+  {/* Title */}
+  <Typography
+    variant="h3"
+    fontWeight="bold"
+    sx={{
+      mt: 2,
+      fontSize: { xs: "2rem", md: "3rem" },
+      color: "#fff",
+      textShadow: `0 0 10px ${theme.palette.primary.main}, 0 0 20px ${theme.palette.primary.main}`,
+    }}
+  >
+    Full-Stack Developer
+  </Typography>
 
-            <Typography variant="h5" sx={{ mt: 1 }}>
-              I Help Startups{" "}
-              <Typography
-                component="span"
-                sx={{ color: theme.palette.secondary.main, fontWeight: "bold" }}
-              >
-                Launch
-              </Typography>{" "}
-              And{" "}
-              <Typography
-                component="span"
-                sx={{ color: theme.palette.secondary.main, fontWeight: "bold" }}
-              >
-                Grow
-              </Typography>{" "}
-              Their Products
-            </Typography>
+  {/* Short Introduction */}
+  <Typography variant="h5" sx={{ mt: 1, fontWeight: "bold", color: "#fff" }}>
+    1+ Years of Experience in Frontend, Backend & AWS
+  </Typography>
 
-            <Typography
-              variant="body1"
-              sx={{
-                mt: 2,
-                color: theme.palette.text.secondary,
-                maxWidth: "600px",
-              }}
-            >
-              I am a software engineer with more than four years of experience.
-              Recognized as a practical and effective developer, experienced in
-              leading cross-functional teams in a time-pressured setting to
-              complete projects on schedule and within budget.
-            </Typography>
-          </Box>
+  {/* Experience & Tech Stack */}
+  <Typography
+    variant="body1"
+    sx={{
+      mt: 2,
+      color: "#fff",
+      maxWidth: "600px",
+      textShadow: "0 0 5px rgba(255, 255, 255, 0.5)",
+      lineHeight: 1.6,
+    }}
+  >
+    I specialize in <strong>JavaScript</strong>, <strong>React.js</strong>, <strong>Java</strong>, and <strong>Spring Boot</strong>, 
+    with expertise in building scalable applications. Currently, I'm working on a <strong>Fintech application</strong>, 
+    leveraging my skills in <strong>AWS services</strong> and cloud computing to deliver high-performance solutions.
+  </Typography>
+</Box>
+
+
 
           {/* Right Side - SVG Illustration */}
           <Box sx={{ flex: 1, textAlign: "center", mt: { xs: 3, md: 0 } }}>

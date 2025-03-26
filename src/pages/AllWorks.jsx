@@ -64,10 +64,9 @@ const projects = [
   ];
   
 
-
-const AllWorks = () => {
-    const theme = useTheme(); // Use theme
-
+  const AllWorks = () => {
+    const theme = useTheme(); // Use theme dynamically
+  
     return (
       <Box
         sx={{
@@ -76,22 +75,23 @@ const AllWorks = () => {
           minHeight: "100vh",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "center",
           alignItems: "center",
           paddingBottom: "80px", // Prevent footer collision
+          paddingX: 2, // Improve mobile spacing
         }}
       >
         <Container maxWidth="lg">
           <Paper
-            elevation={3}
+            elevation={4}
             sx={{
-              background: theme.palette.background.default,
-              padding: 4,
+              background: theme.palette.background.paper,
+              padding: { xs: 2, sm: 4 },
               borderRadius: 3,
               width: "100%",
+              boxShadow: `0px 0px 15px ${theme.palette.primary.main}`, // Subtle neon glow
             }}
           >
-            {/* Title */}
+            {/* Title with Neon Glow */}
             <Typography
               variant="h3"
               align="center"
@@ -101,16 +101,21 @@ const AllWorks = () => {
                 background: "linear-gradient(45deg, #FF00FF, #39FF14, #00FFFF)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
-                textShadow: "0px 0px 10px rgba(255,255,255,0.6)",
+                textShadow: "0px 0px 15px rgba(255,255,255,0.8)",
                 marginBottom: "20px",
                 fontSize: { xs: "2rem", sm: "3rem", md: "4rem" },
+                animation: "neonPulse 1.5s infinite alternate",
+                "@keyframes neonPulse": {
+                  "0%": { textShadow: "0px 0px 10px rgba(255,255,255,0.6)" },
+                  "100%": { textShadow: "0px 0px 20px rgba(255,255,255,1)" },
+                },
               }}
             >
               ⚡ Cool Coding Challenges 🚀
             </Typography>
   
             {/* Projects Grid */}
-            <Grid container spacing={3}>
+            <Grid container spacing={3} justifyContent="center">
               {projects.map((project, index) => (
                 <Grid item xs={12} sm={6} md={4} key={index}>
                   <ProjectCard {...project} />

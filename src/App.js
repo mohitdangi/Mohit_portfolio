@@ -24,8 +24,8 @@ function App() {
               {/* Now it will be shown! */}
             </>
           } />
-       <Route path="challenges" element={<Challenges />} />
-       <Route path="allworks" element={<AllWorks />} />
+       <Route path="dailychallenges" element={<Challenges />} />
+       <Route path="works" element={<AllWorks />} />
       </Route>
     </Routes>
   )
