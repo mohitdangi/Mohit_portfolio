@@ -80,9 +80,12 @@ const BannerSection = () => {
                 lineHeight: 1.6,
               }}
             >
-              I specialize in <strong>JavaScript</strong>, <strong>React.js</strong>, <strong>Java</strong>, and <strong>Spring Boot</strong>, 
-              with expertise in building scalable applications. Currently, I'm working on a <strong>Fintech application</strong>, 
-              leveraging my skills in <strong>AWS services</strong> and cloud computing to deliver high-performance solutions.
+       I specialize in <strong>JavaScript</strong>, <strong>React.js</strong>,
+        <strong>Java</strong>, and <strong>Spring Boot</strong>, 
+        with expertise in building scalable applications.
+        Know how to write  modular code 
+         with a test-driven approach, ensuring optimized and
+          secure solutions 
             </Typography>
           </motion.div>
 
