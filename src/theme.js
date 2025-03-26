@@ -4,6 +4,7 @@ const neonTheme = createTheme({
   palette: {
     primary: {
       main: '#39FF14', // Neon Green
+      heading : '#FFF',
     },
     secondary: {
       main: '#FF00FF', // Neon Pink
@@ -18,7 +19,7 @@ const neonTheme = createTheme({
     },
   },
   typography: {
-    fontFamily: '"Poppins", sans-serif',
+    fontFamily: '"Orbitron", sans-serif',
     allVariants: {
       color: '#FFFFFF',
     },

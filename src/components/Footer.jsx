@@ -23,7 +23,7 @@ const Footer = () => {
           fontWeight: "bold",
           textTransform: "uppercase",
           letterSpacing: "3px",
-          textShadow: `0px 0px 10px ${theme.palette.primary.main}, 0px 0px 20px ${theme.palette.secondary.main}`,
+          color: theme.palette.primary.main,
         }}
       >
         Connect with me 💻
@@ -32,10 +32,10 @@ const Footer = () => {
       {/* Social Icons */}
       <Box mt={2} mb={2} display="flex" justifyContent="center" gap={2}>
         {[
-          { icon: <FaGithub />, link: "https://github.com/yourusername" },
-          { icon: <FaLinkedin />, link: "https://linkedin.com/in/yourusername" },
-          { icon: <FaXTwitter />, link: "https://x.com/yourusername" },
-          { icon: <SiLeetcode />, link: "https://leetcode.com/yourusername" },
+          { icon: <FaGithub />, link: "https://github.com/mohitdangi" },
+          { icon: <FaLinkedin />, link: "https://in.linkedin.com/in/mohit-dangi-497248210" },
+          { icon: <FaXTwitter />, link: "https://x.com/theDangiJi" },
+          { icon: <SiLeetcode />, link: "https://leetcode.com/u/mohitdangi58368/" },
         ].map((item, index) => (
           <IconButton
             key={index}
@@ -43,12 +43,10 @@ const Footer = () => {
             target="_blank"
             sx={{
               color: theme.palette.primary.main,
-              fontSize: "24px",
               transition: "0.3s",
               "&:hover": {
-                transform: "scale(1.3)",
-                color: theme.palette.secondary.main,
-                textShadow: `0 0 15px ${theme.palette.secondary.main}`,
+                transform: "scale(1.2)",
+                color: "#ffffff", // Icon turns white on hover
               },
             }}
           >
@@ -63,15 +61,9 @@ const Footer = () => {
         sx={{
           color: theme.palette.primary.main,
           fontWeight: "bold",
-          textShadow: `0px 0px 5px ${theme.palette.primary.main}`,
-          animation: "neonGlow 1.5s infinite alternate",
-          "@keyframes neonGlow": {
-            "0%": { textShadow: `0px 0px 5px ${theme.palette.primary.main}` },
-            "100%": { textShadow: `0px 0px 15px ${theme.palette.primary.main}` },
-          },
         }}
       >
-        © {new Date().getFullYear()} Your Name | All Rights Reserved.
+        © {new Date().getFullYear()} Mohit Dangi | All Rights Reserved.
       </Typography>
     </Box>
   );

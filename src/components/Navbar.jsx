@@ -1,113 +1,228 @@
 import React, { useState } from "react";
-import { AppBar, Toolbar, Typography, Button, Box, IconButton, Drawer, List, ListItem, ListItemText, Divider } from "@mui/material";
+import { 
+  AppBar, 
+  Toolbar, 
+  Typography, 
+  Button, 
+  Box, 
+  IconButton, 
+  Drawer, 
+  List, 
+  ListItem, 
+  Divider,
+  Container
+} from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
 import { Link } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
 
 const Navbar = () => {
-  const theme = useTheme(); // Access the custom theme
+  const theme = useTheme();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const resumeLink = "https://drive.google.com/file/d/1uk4BTBn-5YTNUQ79ZYYFF5eF990uK36Z/view";
 
   const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
 
-  return (
-    <AppBar position="static" sx={{ backgroundColor: theme.palette.background.default, boxShadow: `0 0 10px ${theme.palette.primary.main}` }}>
-      <Toolbar sx={{ display: "flex", alignItems: "center" }}>
-        {/* Logo */}
-        <Typography
-          variant="h6"
-          component={Link}
-          to="/"
-          sx={{
-            textDecoration: "none",
-            color: theme.palette.primary.main,
-            flexGrow: 1,
-            fontWeight: "bold",
-            textShadow: `0 0 5px ${theme.palette.primary.main}, 0 0 10px ${theme.palette.primary.main}`,
-          }}
-        >
-          Mohit's Portfolio
-        </Typography>
+  // Navigation items
+  const navItems = [
+    { name: "Home", path: "/" },
+    { name: "Daily Challenges", path: "/dailychallenges" },
+    { name: "Works", path: "/works" }
+  ];
 
-        {/* Desktop Links */}
-        <Box sx={{ display: { xs: "none", md: "flex" }, gap: 3 }}>
-          {["Daily Challenges", "Resume", "Works"].map((item, index) => (
-            <Button
-              key={index}
-              color="inherit"
+  return (
+    <>
+      <AppBar 
+        position="fixed"
+        sx={{ 
+          backgroundColor: theme.palette.background.paper,
+          backgroundImage: 'none',
+          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+          zIndex: theme.zIndex.drawer + 1,
+        }}
+      >
+        <Container maxWidth="lg">
+          <Toolbar 
+            disableGutters
+            sx={{ 
+              display: "flex", 
+              alignItems: "center",
+              justifyContent: "space-between",
+              minHeight: '64px',
+            }}
+          >
+            {/* Logo - Links to root */}
+            <Typography
+              variant="h6"
               component={Link}
-              to={`/${item.toLowerCase().replace(/\s/g, "")}`}
+              to="/"
               sx={{
-                color: theme.palette.primary.main,
-                textShadow: `0 0 5px ${theme.palette.primary.main}, 0 0 10px ${theme.palette.primary.main}`,
-                "&:hover": {
-                  backgroundColor: theme.palette.background.paper,
-                  boxShadow: `0 0 10px ${theme.palette.primary.main}`,
-                },
+                textDecoration: "none",
+                color: theme.palette.primary.main, // Swapped with hover color
+                fontWeight: "bold",
+                fontSize: { xs: '1.1rem', sm: '1.25rem' },
+                '&:hover': {
+                  color: theme.palette.text.primary, // Swapped with default color
+                }
               }}
             >
-              {item}
-            </Button>
-          ))}
-        </Box>
+              Mohit's Portfolio
+            </Typography>
 
-        {/* Mobile Menu Icon */}
-        <IconButton color="inherit" edge="end" sx={{ display: { md: "none" }, color: theme.palette.primary.main }} onClick={handleDrawerToggle}>
-          <MenuIcon sx={{ fontSize: 32 }} />
-        </IconButton>
-      </Toolbar>
+            {/* Desktop Links */}
+            <Box sx={{ display: { xs: "none", md: "flex" }, gap: 2 }}>
+              {navItems.filter(item => item.name !== "Home").map((item) => (
+                <Button
+                  key={item.name}
+                  component={Link}
+                  to={item.path}
+                  sx={{
+                    color: theme.palette.primary.main, // Swapped with hover color
+                    fontWeight: 500,
+                    textTransform: 'none',
+                    fontSize: '0.9rem',
+                    '&:hover': {
+                      color: theme.palette.text.primary, // Swapped with default color
+                      backgroundColor: 'transparent',
+                    },
+                  }}
+                >
+                  {item.name}
+                </Button>
+              ))}
+              
+              {/* Resume Button */}
+              <Button
+                component="a"
+                href={resumeLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                sx={{
+                  color: theme.palette.primary.main, // Swapped with hover color
+                  fontWeight: 500,
+                  textTransform: 'none',
+                  fontSize: '0.9rem',
+                  '&:hover': {
+                    color: theme.palette.text.primary, // Swapped with default color
+                    backgroundColor: 'transparent',
+                  },
+                }}
+              >
+                Resume
+              </Button>
+            </Box>
+
+            {/* Mobile Menu Icon */}
+            <IconButton 
+              color="inherit" 
+              edge="end" 
+              sx={{ 
+                display: { md: "none" }, 
+                color: theme.palette.primary.main, // Swapped with hover color
+                '&:hover': {
+                  color: theme.palette.text.primary, // Swapped with default color
+                }
+              }} 
+              onClick={handleDrawerToggle}
+            >
+              <MenuIcon sx={{ fontSize: 32 }} />
+            </IconButton>
+          </Toolbar>
+        </Container>
+      </AppBar>
+
+      {/* Add spacer to prevent content from being hidden behind the fixed navbar */}
+      <Toolbar 
+        sx={{
+          minHeight: '64px !important',
+          visibility: 'hidden',
+          [theme.breakpoints.down('sm')]: {
+            minHeight: '56px !important',
+          }
+        }} 
+      />
 
       {/* Mobile Drawer */}
-      <Drawer anchor="right" open={mobileOpen} onClose={handleDrawerToggle}>
-        <Box sx={{ width: 250, padding: 2, backgroundColor: theme.palette.background.default, color: theme.palette.primary.main }}>
-          <Typography variant="h6" sx={{ textAlign: "center", mb: 2, fontWeight: "bold", textShadow: `0 0 5px ${theme.palette.primary.main}, 0 0 10px ${theme.palette.primary.main}` }}>
-            Menu
-          </Typography>
-          <Divider sx={{ backgroundColor: theme.palette.primary.main }} />
+      <Drawer 
+        anchor="right" 
+        open={mobileOpen} 
+        onClose={handleDrawerToggle}
+        ModalProps={{ keepMounted: true }}
+        sx={{
+          '& .MuiDrawer-paper': {
+            width: { xs: '75%', sm: '300px' },
+            backgroundColor: theme.palette.background.paper,
+            boxShadow: theme.shadows[8]
+          }
+        }}
+      >
+        <Box sx={{ padding: '20px' }}>
+          <Box sx={{ 
+            display: 'flex', 
+            justifyContent: 'flex-end',
+            marginBottom: '10px'
+          }}>
+            <IconButton onClick={handleDrawerToggle}>
+              <CloseIcon sx={{ color: theme.palette.primary.main }} /> {/* Swapped with hover color */}
+            </IconButton>
+          </Box>
+          
+          <Divider sx={{ marginBottom: '20px' }} />
+          
           <List>
-  {["Home", "Daily Challenges", "Resume", "Works"].map((item, index) => (
-    item === "Resume" ? (
-      <ListItem 
-        key={index} 
-        button 
-        component="a" 
-        href="https://drive.google.com/your-resume-link" 
-        target="_blank" 
-        rel="noopener noreferrer" 
-        sx={{ 
-          color: theme.palette.primary.main, 
-          "&:hover": { 
-            backgroundColor: theme.palette.background.paper, 
-            boxShadow: `0 0 10px ${theme.palette.primary.main}` 
-          } 
-        }}
-      >
-        <ListItemText primary={item} />
-      </ListItem>
-    ) : (
-      <ListItem 
-        key={index} 
-        button 
-        component={Link} 
-        to={`/${item.toLowerCase().replace(/\s/g, "")}`} 
-        onClick={handleDrawerToggle} 
-        sx={{ 
-          color: theme.palette.primary.main, 
-          "&:hover": { 
-            backgroundColor: theme.palette.background.paper, 
-            boxShadow: `0 0 10px ${theme.palette.primary.main}` 
-          } 
-        }}
-      >
-        <ListItemText primary={item} />
-      </ListItem>
-    )
-  ))}
-</List>
-
+            {navItems.map((item) => (
+              <ListItem 
+                key={item.name}
+                disablePadding
+                sx={{ marginBottom: '8px' }}
+              >
+                <Button
+                  fullWidth
+                  component={Link}
+                  to={item.path}
+                  onClick={handleDrawerToggle}
+                  sx={{
+                    color: theme.palette.primary.main, // Swapped with hover color
+                    justifyContent: 'flex-start',
+                    padding: '12px 16px',
+                    '&:hover': {
+                      color: theme.palette.text.primary, // Swapped with default color
+                      backgroundColor: 'transparent',
+                    }
+                  }}
+                >
+                  {item.name}
+                </Button>
+              </ListItem>
+            ))}
+            
+            {/* Resume List Item */}
+            <ListItem disablePadding sx={{ marginBottom: '8px' }}>
+              <Button
+                fullWidth
+                component="a"
+                href={resumeLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={handleDrawerToggle}
+                sx={{
+                  color: theme.palette.primary.main, // Swapped with hover color
+                  justifyContent: 'flex-start',
+                  padding: '12px 16px',
+                  '&:hover': {
+                    color: theme.palette.text.primary, // Swapped with default color
+                    backgroundColor: 'transparent',
+                  }
+                }}
+              >
+                Resume
+              </Button>
+            </ListItem>
+          </List>
         </Box>
       </Drawer>
-    </AppBar>
+    </>
   );
 };
 

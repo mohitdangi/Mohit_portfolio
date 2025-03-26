@@ -1,9 +1,11 @@
-import React from "react";
-import { Grid, Container, Typography,Box,Paper } from "@mui/material";
-import ProjectCard from "../components/ProjectCard"; // Import your ProjectCard component
-import { useTheme } from "@mui/material/styles";
-
-const projects = [
+  import React from "react";
+  import { Grid, Container, Typography, Box, Paper } from "@mui/material";
+  import ProjectCard from "../components/ProjectCard";
+  import { useTheme } from "@mui/material/styles";
+  import { motion } from "framer-motion";
+  
+  // ... (keep your existing projects array)
+  const projects = [
     {
       title: "Infinite Scroll Part 2",
       description: "An advanced infinite scrolling implementation.",
@@ -180,69 +182,114 @@ const projects = [
     },
   ];
 
+  // Animation variants
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.3
+      }
+    }
+  };
+  
+  const cardItem = {
+    hidden: { opacity: 0, y: 40, scale: 0.9 },
+    show: { 
+      opacity: 1, 
+      y: 0,
+      scale: 1,
+      transition: {
+        type: "spring",
+        stiffness: 90,
+        damping: 15
+      }
+    }
+  };
+  
+  const titleAnimation = {
+    hidden: { opacity: 0, y: -30 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.16, 1, 0.3, 1]
+      }
+    }
+  };
+  
   const Challenges = () => {
-    const theme = useTheme(); // Use theme dynamically
+    const theme = useTheme();
   
     return (
       <Box
         sx={{
-          backgroundColor: theme.palette.background.default,
+          backgroundColor: "transparent",
           color: theme.palette.text.primary,
           minHeight: "100vh",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          paddingBottom: "80px", // Prevent footer overlap
-          paddingX: 2, // Improve spacing on mobile
+          padding: "20px",
+          paddingX: 2,
         }}
       >
         <Container maxWidth="lg">
           <Paper
-            elevation={4}
+            elevation={0}
             sx={{
-              background: theme.palette.background.paper,
+              background: "transparent",
               padding: { xs: 2, sm: 4 },
               borderRadius: 3,
               width: "100%",
-              boxShadow: `0px 0px 15px ${theme.palette.primary.main}`, // Subtle neon glow
             }}
           >
-            {/* Title with Neon Glow */}
-            <Typography
-              variant="h3"
-              align="center"
-              gutterBottom
-              sx={{
-                fontWeight: "bold",
-                background: "linear-gradient(45deg, #FF00FF, #39FF14, #00FFFF)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                textShadow: "0px 0px 15px rgba(255,255,255,0.8)",
-                marginBottom: "20px",
-                fontSize: { xs: "2rem", sm: "3rem", md: "4rem" },
-                animation: "neonPulse 1.5s infinite alternate",
-                "@keyframes neonPulse": {
-                  "0%": { textShadow: "0px 0px 10px rgba(255,255,255,0.6)" },
-                  "100%": { textShadow: "0px 0px 20px rgba(255,255,255,1)" },
-                },
-              }}
+            {/* Animated Title */}
+            <motion.div
+              initial="hidden"
+              animate="show"
+              variants={titleAnimation}
             >
-              ⚡ Exciting Coding Challenges 🚀
-            </Typography>
+              <Typography
+                variant="h4"
+                gutterBottom
+                sx={{
+                  color: theme.palette.text.primary,
+                  textAlign: "center",
+                  fontWeight: "bold",
+                  marginBottom: "20px",
+                }}
+              >
+                ⚡ Exciting Coding Challenges 🚀
+              </Typography>
+            </motion.div>
   
-            {/* Challenges Grid */}
-            <Grid container spacing={3} justifyContent="center">
-              {projects.map((project, index) => (
-                <Grid item xs={12} sm={6} md={4} key={index}>
-                  <ProjectCard {...project} />
-                </Grid>
-              ))}
-            </Grid>
+            {/* Animated Challenges Grid */}
+            <motion.div
+              variants={container}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, margin: "-100px" }}
+            >
+              <Grid container spacing={3} justifyContent="center">
+                {projects.map((project, index) => (
+                  <Grid item xs={12} sm={6} md={4} key={index}>
+                    <motion.div 
+                      variants={cardItem}
+                      whileHover={{ y: -5 }}
+                    >
+                      <ProjectCard {...project} />
+                    </motion.div>
+                  </Grid>
+                ))}
+              </Grid>
+            </motion.div>
           </Paper>
         </Container>
       </Box>
     );
   };
   
-
-export default Challenges;
+  export default Challenges;

@@ -1,16 +1,18 @@
 import React from "react";
 import { Box, Typography, Button, Container, Paper } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+import { motion } from "framer-motion";
 import leetcodeState from "../assets/leetcodeState.png";
 
 const ProblemSolving = () => {
   const theme = useTheme();
-  const leetcodeProfile = "https://leetcode.com/your-profile/"; // Change this to your actual LeetCode URL
+  const leetcodeProfile = "https://leetcode.com/u/mohitdangi58368/"; 
 
   return (
     <Box
       sx={{
-        backgroundColor: theme.palette.background.default,
+        position: "relative",
+        backgroundColor: "transparent",
         color: theme.palette.text.primary,
         py: 6,
         display: "flex",
@@ -18,86 +20,89 @@ const ProblemSolving = () => {
       }}
     >
       <Container maxWidth="md">
-        <Paper
-          elevation={3}
-          sx={{
-            background: theme.palette.background.paper,
-            padding: 4,
-            borderRadius: 3,
-            textAlign: "center",
-            boxShadow: `0 0 15px ${theme.palette.primary.main}`, // Neon Glow Effect
+        {/* Motion wrapper that triggers when component comes into view */}
+        <motion.div
+          initial={{ rotate: 0 }}
+          whileInView={{
+            rotate: [0, -8, 6, -4, 2, -1, 0.5, 0],
+          }}
+          viewport={{ once: true }} // Only animate once
+          transition={{
+            duration: 3,
+            ease: "easeOut",
+            times: [0, 0.2, 0.4, 0.6, 0.8, 0.9, 0.95, 1],
+          }}
+          style={{
+            transformOrigin: "top center",
           }}
         >
-          {/* Title */}
-          <Typography
-            variant="h4"
-            fontWeight="bold"
+          <Paper
+            elevation={1}
             sx={{
-              color: theme.palette.primary.main,
-              textShadow: `0 0 10px ${theme.palette.primary.main}, 0 0 20px ${theme.palette.primary.main}`,
+              background: theme.palette.background.paper,
+              padding: 4,
+              borderRadius: 3,
+              textAlign: "center",
             }}
           >
-            🚀 Problem Solving
-          </Typography>
-
-          {/* Description */}
-          <Typography
-            variant="body1"
-            sx={{
-              mt: 1,
-              mb: 3,
-              textShadow: `0 0 5px ${theme.palette.text.secondary}`,
-            }}
-          >
-            I enjoy tackling challenging coding problems and sharpening my problem-solving skills.
-            I actively solve problems on LeetCode to improve my data structures and algorithms knowledge.
-          </Typography>
-
-          {/* LeetCode Stats Image */}
-          <Box sx={{ display: "flex", justifyContent: "center", mb: 3 }}>
-            <img
-              src={leetcodeState}
-              alt="LeetCode Stats"
-              style={{
-                width: "100%",
-                maxWidth: "500px",
-                borderRadius: "10px",
-                boxShadow: `0 0 10px ${theme.palette.primary.main}`,
+            {/* Title */}
+            <Typography
+              variant="h4"
+              fontWeight="bold"
+              sx={{
+                color: theme.palette.primary.main,
               }}
-            />
-          </Box>
+            >
+              🚀 Problem Solving
+            </Typography>
 
-          {/* LeetCode Profile Button */}
-          <Button
-        href="https://github.com/yourusername"
-        target="_blank"
-        variant="outlined"
-        style={{
-          marginTop: "30px",
-          padding: "10px 20px",
-          fontSize: "16px",
-          fontWeight: "bold",
-          color: "#39FF14",
-          borderColor: "#39FF14",
-          textTransform: "none",
-          transition: "0.3s ease-in-out",
-          boxShadow: "0 0 15px #39FF14",
-        }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.boxShadow = "0 0 25px #39FF14";
-          e.currentTarget.style.backgroundColor = "#39FF14";
-          e.currentTarget.style.color = "#111111";
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.boxShadow = "0 0 15px #39FF14";
-          e.currentTarget.style.backgroundColor = "transparent";
-          e.currentTarget.style.color = "#39FF14";
-        }}
-      >
-        Visit my profile
-      </Button>
+            {/* Description */}
+            <Typography variant="body1" sx={{ mt: 1, mb: 3 }}>
+              I enjoy tackling challenging coding problems and sharpening my problem-solving skills.
+              I actively solve problems on LeetCode to improve my data structures and algorithms knowledge.
+            </Typography>
 
-        </Paper>
+            {/* LeetCode Stats Image */}
+            <Box sx={{ display: "flex", justifyContent: "center", mb: 3 }}>
+              <img
+                src={leetcodeState}
+                alt="LeetCode Stats"
+                style={{
+                  width: "100%",
+                  maxWidth: "500px",
+                  borderRadius: "10px",
+                }}
+              />
+            </Box>
+
+            {/* LeetCode Profile Button */}
+            <Button
+              href={leetcodeProfile}
+              target="_blank"
+              variant="outlined"
+              sx={{
+                marginTop: "30px",
+                padding: "10px 20px",
+                fontSize: "16px",
+                fontWeight: "bold",
+                color: theme.palette.primary.main,
+                borderColor: theme.palette.primary.main,
+                textTransform: "none",
+                transition: "0.3s ease-in-out",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = theme.palette.primary.main;
+                e.currentTarget.style.color = theme.palette.background.paper;
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = "transparent";
+                e.currentTarget.style.color = theme.palette.primary.main;
+              }}
+            >
+              Visit my profile
+            </Button>
+          </Paper>
+        </motion.div>
       </Container>
     </Box>
   );

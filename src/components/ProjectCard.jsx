@@ -3,49 +3,25 @@ import { Card, CardMedia, CardContent, Typography, Button } from "@mui/material"
 const ProjectCard = ({ title, description, image, link }) => {
   return (
     <Card
-      style={{
-        backgroundColor: "#222222",
+      sx={{
+        backgroundColor: "#222",
         textAlign: "center",
         borderRadius: "12px",
         overflow: "hidden",
-        transition: "0.3s ease-in-out",
-        boxShadow: "0 0 10px rgba(0, 255, 0, 0.3)",
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.boxShadow = "0 0 20px rgba(0, 255, 0, 0.8)";
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.boxShadow = "0 0 10px rgba(0, 255, 0, 0.3)";
+        boxShadow: "0px 4px 8px rgba(0, 255, 0, 0.2)",
+        transition: "transform 0.2s ease-in-out",
+        "&:hover": { transform: "scale(1.02)" },
       }}
     >
       {/* Project Image */}
-      <CardMedia
-        component="img"
-        height="160"
-        image={image}
-        alt={title}
-        style={{ objectFit: "cover" }}
-      />
+      <CardMedia component="img" height="160" image={image} alt={title} sx={{ objectFit: "cover" }} />
 
       {/* Project Details */}
       <CardContent>
-        <Typography
-          variant="h6"
-          style={{
-            color: "#39FF14",
-            fontWeight: "bold",
-            textShadow: "0 0 10px #39FF14",
-          }}
-        >
+        <Typography variant="h6" sx={{ color: "#39FF14", fontWeight: "bold" }}>
           {title}
         </Typography>
-        <Typography
-          variant="body2"
-          style={{
-            color: "#CCCCCC",
-            marginBottom: "15px",
-          }}
-        >
+        <Typography variant="body2" sx={{ color: "#CCCCCC", mb: 2 }}>
           {description}
         </Typography>
 
@@ -55,23 +31,15 @@ const ProjectCard = ({ title, description, image, link }) => {
             href={link}
             target="_blank"
             variant="outlined"
-            style={{
+            sx={{
               color: "#39FF14",
               borderColor: "#39FF14",
               textTransform: "none",
               fontWeight: "bold",
-              transition: "0.3s ease-in-out",
-              boxShadow: "0 0 10px #39FF14",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.boxShadow = "0 0 20px #39FF14";
-              e.currentTarget.style.backgroundColor = "#39FF14";
-              e.currentTarget.style.color = "#111111";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.boxShadow = "0 0 10px #39FF14";
-              e.currentTarget.style.backgroundColor = "transparent";
-              e.currentTarget.style.color = "#39FF14";
+              "&:hover": {
+                backgroundColor: "#39FF14",
+                color: "#222",
+              },
             }}
           >
             View Project
